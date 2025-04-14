@@ -1,0 +1,37 @@
+public class Eingabe
+{
+    public static void leseZahl()
+    {
+        zahlEingeben();
+        Scanner scanner = new Scanner(System.in);
+        int anzahl = 0;
+        try
+        {
+            zahl = scanner.nextInt();
+        }
+        catch (InputMismatchException e)
+        {
+            keineZahl();
+            leseZahl();
+        }
+    }
+
+    public static void leseHoelzer()
+    {
+        leseZahl();
+        try
+        {
+            anzahl = leseZahl();
+            if (anzahl < 1 || anzahl > 3)
+            {
+                zahlNichtimBereich();
+                leseHoelzer();
+            }
+        }
+        catch (InputMismatchException e)
+        {
+            zahlNichtimBereich();
+            leseZahl();
+        }
+    }
+}
