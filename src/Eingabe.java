@@ -1,29 +1,35 @@
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
 public class Eingabe
 {
-    public static void leseZahl()
+    public static int leseZahl()
     {
-        zahlEingeben();
+        Ausgabe.zahlEingeben();
         Scanner scanner = new Scanner(System.in);
         int anzahl = 0;
         try
         {
-            zahl = scanner.nextInt();
+            anzahl = scanner.nextInt();
         }
         catch (InputMismatchException e)
         {
-            keineZahl();
+            Ausgabe.keineZahl();
             leseZahl();
         }
+        return anzahl;
     }
 
-    public static void leseHoelzer()
+    public static int leseHoelzer()
     {
+        int anzahl = 0;
         leseZahl();
             anzahl = leseZahl();
             if (anzahl < 1 || anzahl > 3)
             {
-                zahlNichtimBereich();
+                Ausgabe.zahlNichtimBereich();
                 leseHoelzer();
             }
+            return anzahl;
     }
 }

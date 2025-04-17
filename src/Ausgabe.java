@@ -39,28 +39,14 @@ public class Ausgabe
     {
         System.out.println("Sie ziehen " + SpielerZug + " Streichhölzer.");
         Streichholzanzahl -= SpielerZug;
-        if (Streichholzanzahl <= 0)
-        {
-            SpielerGewinnt();
-        }
-        else
-        {
-            Spielstand(Streichholzanzahl);
-        }
+        Spielstand(Streichholzanzahl);
     }
 
     public static void ComputerZug(int Streichholzanzahl, int ComputerZug)
     {
         System.out.println("Der Computer zieht " + ComputerZug + " Streichhölzer.");
         Streichholzanzahl -= ComputerZug;
-        if (Streichholzanzahl <= 0)
-        {
-            ComputerGewinnt();
-        }
-        else
-        {
             Spielstand(Streichholzanzahl);
-        }
     }       
 
 }

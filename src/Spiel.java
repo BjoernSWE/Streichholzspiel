@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Spiel
 {
     private int Streichholzanzahl;
@@ -5,46 +7,53 @@ public class Spiel
     public Spiel(int Streichholzanzahl)
     {
         this.Streichholzanzahl = Streichholzanzahl;
-        return Streichholzanzahl;
-
+        Ausgabe.Spielstand(Streichholzanzahl);
         while(Streichholzanzahl > 0)
         {
             ComZiehen();
             if(Streichholzanzahl <= 0)
             {
-                System.out.println("Der Computer hat verloren!");
+                Ausgabe.SpielerGewinnt();
                 break;
             }
-            System.out.println("Es sind noch " + Streichholzanzahl + " Streichhölzer übrig.");
-            System.out.println("Wie viele Streichhölzer möchten Sie ziehen? (1-3)");
-            Scanner scanner = new Scanner(System.in);
-            int anzahl = scanner.nextInt();
-            if(anzahl < 1 || anzahl > 3)
-            {
-                System.out.println("Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 1 und 3 ein.");
-                continue;
-            }
-            Streichholzanzahl -= anzahl;
+            Ausgabe.Spielstand(Streichholzanzahl);
+            Ausgabe.zahlEingeben();
+            SpielerZiehen();
             if(Streichholzanzahl <= 0)
             {
-                System.out.println("Sie haben leider verloren!");
+                Ausgabe.ComputerGewinnt();
                 break;
             }
         }
     }
 
-    public void ComZiehen(int Anzahl)
+    public int ComZiehen()
     {
-
+        berechneComZug();
+        int Anzahl = berechneComZug();
+        this.Streichholzanzahl -= Anzahl;
+        Ausgabe.ComputerZug(Streichholzanzahl, Anzahl);
+        return Streichholzanzahl;
     }
 
-    public void SpielerZiehen(int Anzahl)
+    public int SpielerZiehen()
     {
-        
+        int Anzahl = Eingabe.leseHoelzer();
+        if(Streichholzanzahl - Anzahl < 0)
+        {
+            Ausgabe.zugNichtMöglich();
+            SpielerZiehen();
+        }else
+        {
+            this.Streichholzanzahl -= Anzahl;
+            Ausgabe.SpielerZug(Streichholzanzahl, Anzahl);
+        }
+        return Streichholzanzahl;
     }
 
-    private void berechneComZug()
+    private int berechneComZug()
     {
-
+        int Anzahl = 1;
+        return Anzahl;
     }
 }
