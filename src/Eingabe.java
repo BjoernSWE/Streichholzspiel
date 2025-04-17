@@ -19,19 +19,11 @@ public class Eingabe
     public static void leseHoelzer()
     {
         leseZahl();
-        try
-        {
             anzahl = leseZahl();
             if (anzahl < 1 || anzahl > 3)
             {
                 zahlNichtimBereich();
                 leseHoelzer();
             }
-        }
-        catch (InputMismatchException e)
-        {
-            zahlNichtimBereich();
-            leseZahl();
-        }
     }
 }
