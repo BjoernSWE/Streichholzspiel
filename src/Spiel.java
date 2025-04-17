@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Spiel
 {
@@ -7,21 +7,19 @@ public class Spiel
     public Spiel(int Streichholzanzahl)
     {
         this.Streichholzanzahl = Streichholzanzahl;
-        Ausgabe.Spielstand(Streichholzanzahl);
-        while(Streichholzanzahl > 0)
+        Ausgabe.Spielstand(this.Streichholzanzahl);
+        while(this.Streichholzanzahl > 0)
         {
-            ComZiehen();
-            if(Streichholzanzahl <= 0)
-            {
-                Ausgabe.SpielerGewinnt();
-                break;
-            }
-            Ausgabe.Spielstand(Streichholzanzahl);
-            Ausgabe.zahlEingeben();
             SpielerZiehen();
-            if(Streichholzanzahl <= 0)
+            if(this.Streichholzanzahl <= 0)
             {
                 Ausgabe.ComputerGewinnt();
+                break;
+            }
+            ComZiehen();
+            if(this.Streichholzanzahl <= 0)
+            {
+                Ausgabe.SpielerGewinnt();
                 break;
             }
         }
@@ -29,9 +27,8 @@ public class Spiel
 
     public int ComZiehen()
     {
-        berechneComZug();
         int Anzahl = berechneComZug();
-        this.Streichholzanzahl -= Anzahl;
+        Streichholzanzahl -= Anzahl;
         Ausgabe.ComputerZug(Streichholzanzahl, Anzahl);
         return Streichholzanzahl;
     }
@@ -45,7 +42,7 @@ public class Spiel
             SpielerZiehen();
         }else
         {
-            this.Streichholzanzahl -= Anzahl;
+            Streichholzanzahl -= Anzahl;
             Ausgabe.SpielerZug(Streichholzanzahl, Anzahl);
         }
         return Streichholzanzahl;
@@ -53,7 +50,19 @@ public class Spiel
 
     private int berechneComZug()
     {
-        int Anzahl = 1;
+        int Anzahl = 0;
+        if(Streichholzanzahl > 4)
+        {
+            Anzahl = Streichholzanzahl % 4;
+            if(Anzahl == 0)
+            {
+                Anzahl = (int)(Math.random() * 3) + 1;
+            }
+        }
+        else
+        {
+            Anzahl = Streichholzanzahl - 1;
+        }
         return Anzahl;
     }
 }

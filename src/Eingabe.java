@@ -23,8 +23,7 @@ public class Eingabe
     public static int leseHoelzer()
     {
         int anzahl = 0;
-        leseZahl();
-            anzahl = leseZahl();
+        anzahl = leseZahl();
             if (anzahl < 1 || anzahl > 3)
             {
                 Ausgabe.zahlNichtimBereich();

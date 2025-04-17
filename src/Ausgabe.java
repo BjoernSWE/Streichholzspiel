@@ -38,15 +38,13 @@ public class Ausgabe
     public static void SpielerZug(int Streichholzanzahl, int SpielerZug)
     {
         System.out.println("Sie ziehen " + SpielerZug + " Streichhölzer.");
-        Streichholzanzahl -= SpielerZug;
         Spielstand(Streichholzanzahl);
     }
 
     public static void ComputerZug(int Streichholzanzahl, int ComputerZug)
     {
         System.out.println("Der Computer zieht " + ComputerZug + " Streichhölzer.");
-        Streichholzanzahl -= ComputerZug;
-            Spielstand(Streichholzanzahl);
+        Spielstand(Streichholzanzahl);
     }       
 
 }
