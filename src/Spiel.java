@@ -10,16 +10,16 @@ public class Spiel
         Ausgabe.Spielstand(this.Streichholzanzahl);
         while(this.Streichholzanzahl > 0)
         {
-            SpielerZiehen();
-            if(this.Streichholzanzahl <= 0)
-            {
-                Ausgabe.ComputerGewinnt();
-                break;
-            }
             ComZiehen();
             if(this.Streichholzanzahl <= 0)
             {
                 Ausgabe.SpielerGewinnt();
+                break;
+            }
+            SpielerZiehen();
+            if(this.Streichholzanzahl <= 0)
+            {
+                Ausgabe.ComputerGewinnt();
                 break;
             }
         }
@@ -54,14 +54,26 @@ public class Spiel
         if(Streichholzanzahl > 4)
         {
             Anzahl = Streichholzanzahl % 4;
+            if(Anzahl == 1 || Anzahl == 2)
+            {
+                Anzahl = 1;
+            }
+            if(Anzahl == 3)
+            {
+                Anzahl = 2;
+            }
             if(Anzahl == 0)
             {
-                Anzahl = (int)(Math.random() * 3) + 1;
+                Anzahl = 3;
             }
         }
         else
         {
             Anzahl = Streichholzanzahl - 1;
+            if(Anzahl == 0)
+            {
+                Anzahl = 1;
+            }
         }
         return Anzahl;
     }

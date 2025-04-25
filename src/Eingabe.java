@@ -5,9 +5,9 @@ public class Eingabe
 {
     public static int leseZahl()
     {
+        int anzahl = 0;
         Ausgabe.zahlEingeben();
         Scanner scanner = new Scanner(System.in);
-        int anzahl = 0;
         try
         {
             anzahl = scanner.nextInt();
